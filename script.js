@@ -1,0 +1,54 @@
+// Find the Invisible Seagull
+let game = {};
+let sfx = {};
+let stats = {};
+
+
+
+// Phaser config
+const config = {
+  // Type
+  type: Phaser.AUTO,
+
+  // Scaling
+  scale: {
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.RESIZE
+  },
+
+  // Rendering options
+  render: {
+    pixelArt: true
+  },
+
+  // Color of sky
+  backgroundColor: 0xfff,
+
+  // Physics
+  physics: {
+    // Default
+    default: "arcade",
+
+    // Arcade
+    arcade: {
+      // Gravity
+      gravity: {
+        y: 1500
+      },
+
+      // Options
+      enableBody: true,
+      debug: true
+    }
+  },
+
+  // Scenes
+  scene: {
+    preload,
+    create,
+    update
+  }
+};
+
+// Phaser game
+const phaserGame = new Phaser.Game(config);
