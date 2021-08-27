@@ -3,7 +3,16 @@ let game = {};
 let sfx = {};
 let stats = {};
 
+// Main functions
+preload() {
 
+}
+create() {
+
+}
+update() {
+  
+}
 
 // Phaser config
 const config = {
