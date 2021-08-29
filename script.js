@@ -1,17 +1,37 @@
 // Find the Invisible Seagull
-let game = {};
+let game = {
+  moiSpeed: 0
+};
 let sfx = {};
-let stats = {};
 
 // Main functions
-preload() {
-
+function preload() {
+  this.load.image("seagull", "seagull.png");
+  this.load.audio("moi", "moi.mp3");
 }
-create() {
+function create() {
+  // Seagull sprite
+  game.seagull = this.add.sprite(600, 500, "seagull").setScale(0.2).setInteractive();
+  game.seagull.visible = false;
+  game.seagull.moiSpeed = Phaser.Math.Distance.Between(this.input.x, this.input.y, game.seagull.x, game.seagull.y) / 3;
+  game.seagull.counter = 0;
 
+  // Sounds
+  sfx.moi = this.sound.add("moi");
+
+  // Win
+  game.seagull.on("pointerdown", () => {
+    sfx.moi.play();
+    game.seagull.visible = true;
+  });
 }
-update() {
-  
+function update() {
+  game.seagull.moiSpeed = Phaser.Math.Distance.Between(this.input.x, this.input.y, game.seagull.x, game.seagull.y) / 3;
+  game.seagull.counter++;
+  if (game.seagull.counter >= game.seagull.moiSpeed) {
+    sfx.moi.play();
+    game.seagull.counter = 0;
+  }
 }
 
 // Phaser config
@@ -31,7 +51,7 @@ const config = {
   },
 
   // Color of sky
-  backgroundColor: 0xfff,
+  backgroundColor: 0xffffff,
 
   // Physics
   physics: {
